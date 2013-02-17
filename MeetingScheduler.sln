@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingScheduler", "MeetingScheduler\MeetingScheduler.csproj", "{8C221682-C9AD-4E2F-AAF9-57A1A8503C86}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54C046CA-795C-4694-B0A1-452C192E8EF8} = {54C046CA-795C-4694-B0A1-452C192E8EF8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingScheduler.Web", "MeetingScheduler.Web\MeetingScheduler.Web.csproj", "{54C046CA-795C-4694-B0A1-452C192E8EF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C221682-C9AD-4E2F-AAF9-57A1A8503C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C221682-C9AD-4E2F-AAF9-57A1A8503C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C221682-C9AD-4E2F-AAF9-57A1A8503C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C221682-C9AD-4E2F-AAF9-57A1A8503C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C046CA-795C-4694-B0A1-452C192E8EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C046CA-795C-4694-B0A1-452C192E8EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C046CA-795C-4694-B0A1-452C192E8EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C046CA-795C-4694-B0A1-452C192E8EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
