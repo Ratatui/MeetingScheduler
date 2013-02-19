@@ -5,15 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2c9852e14a8e41819b02608ab9503a4c" Name="Diagram1" ZoomLevel="84">
-        <EntityTypeShape EntityType="MeetingSchedulerModel.AppointmentResources" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.Resource" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.ResourceTypes" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.AppointmentResources" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.Resource" Width="1.5" PointX="5.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.ResourceTypes" Width="1.5" PointX="9.125" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="MeetingSchedulerModel.SqlAppointments" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_AppointmentResources_Resources" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_AppointmentResources_SqlAppointments" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_Resources_ResourceTypes" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.UserTeam" Width="1.5" PointX="7.125" PointY="1" />
+        <AssociationConnector Association="MeetingSchedulerModel.FK_UserTeam_Resource" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,9 +10,9 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <telerik:RadScheduleView x:Name="Scheduler" telerik:StyleManager.Theme="Windows8Touch">
+        <telerik:RadScheduleView x:Name="Scheduler" telerik:StyleManager.Theme="Windows8Touch" telerik:LocalizationManager.ResourceKey="Ruassian">
             <telerik:RadScheduleView.ViewDefinitions>
-                <telerik:DayViewDefinition/>
+                <telerik:DayViewDefinition x:Name="dayViewDefinition" DayStartTime="9:00:00" DayEndTime="18:00:00"/>               
                 <telerik:WeekViewDefinition/>
                 <telerik:MonthViewDefinition/>
                 <telerik:TimelineViewDefinition/>

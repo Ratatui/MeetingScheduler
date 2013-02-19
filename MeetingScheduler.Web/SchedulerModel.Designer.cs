@@ -23,6 +23,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_AppointmentResources_SqlAppointments", "SqlAppointments", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.SqlAppointment), "AppointmentResources", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.AppointmentResource), true)]
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_Resources_ResourceTypes", "ResourceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.ResourceType), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.Resource), true)]
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_SqlAppointments_SqlAppointments", "SqlAppointments", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MeetingScheduler.Web.SqlAppointment), "SqlAppointments1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.SqlAppointment), true)]
+[assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_UserTeam_Resource", "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.Resource), "UserTeam", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.UserTeam), true)]
 
 #endregion
 
@@ -141,18 +142,18 @@ namespace MeetingScheduler.Web
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<sysdiagrams> sysdiagrams
+        public ObjectSet<UserTeam> UserTeam
         {
             get
             {
-                if ((_sysdiagrams == null))
+                if ((_UserTeam == null))
                 {
-                    _sysdiagrams = base.CreateObjectSet<sysdiagrams>("sysdiagrams");
+                    _UserTeam = base.CreateObjectSet<UserTeam>("UserTeam");
                 }
-                return _sysdiagrams;
+                return _UserTeam;
             }
         }
-        private ObjectSet<sysdiagrams> _sysdiagrams;
+        private ObjectSet<UserTeam> _UserTeam;
 
         #endregion
 
@@ -191,11 +192,11 @@ namespace MeetingScheduler.Web
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the UserTeam EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTosysdiagrams(sysdiagrams sysdiagrams)
+        public void AddToUserTeam(UserTeam userTeam)
         {
-            base.AddObject("sysdiagrams", sysdiagrams);
+            base.AddObject("UserTeam", userTeam);
         }
 
         #endregion
@@ -994,6 +995,28 @@ namespace MeetingScheduler.Web
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MeetingSchedulerModel", "FK_UserTeam_Resource", "UserTeam")]
+        public EntityCollection<UserTeam> UserTeam
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserTeam>("MeetingSchedulerModel.FK_UserTeam_Resource", "UserTeam");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserTeam>("MeetingSchedulerModel.FK_UserTeam_Resource", "UserTeam", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -1692,26 +1715,26 @@ namespace MeetingScheduler.Web
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MeetingSchedulerModel", Name="sysdiagrams")]
+    [EdmEntityTypeAttribute(NamespaceName="MeetingSchedulerModel", Name="UserTeam")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class sysdiagrams : EntityObject
+    public partial class UserTeam : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new sysdiagrams object.
+        /// Create a new UserTeam object.
         /// </summary>
-        /// <param name="name">Initial value of the name property.</param>
-        /// <param name="principal_id">Initial value of the principal_id property.</param>
-        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
-        public static sysdiagrams Createsysdiagrams(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="user">Initial value of the User property.</param>
+        /// <param name="team">Initial value of the Team property.</param>
+        public static UserTeam CreateUserTeam(global::System.Int32 id, global::System.String user, global::System.Int32 team)
         {
-            sysdiagrams sysdiagrams = new sysdiagrams();
-            sysdiagrams.name = name;
-            sysdiagrams.principal_id = principal_id;
-            sysdiagrams.diagram_id = diagram_id;
-            return sysdiagrams;
+            UserTeam userTeam = new UserTeam();
+            userTeam.id = id;
+            userTeam.User = user;
+            userTeam.Team = team;
+            return userTeam;
         }
 
         #endregion
@@ -1721,125 +1744,119 @@ namespace MeetingScheduler.Web
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                OnnameChanging(value);
-                ReportPropertyChanging("name");
-                _name = StructuralObject.SetValidValue(value, false, "name");
-                ReportPropertyChanged("name");
-                OnnameChanged();
-            }
-        }
-        private global::System.String _name;
-        partial void OnnameChanging(global::System.String value);
-        partial void OnnameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 principal_id
-        {
-            get
-            {
-                return _principal_id;
-            }
-            set
-            {
-                Onprincipal_idChanging(value);
-                ReportPropertyChanging("principal_id");
-                _principal_id = StructuralObject.SetValidValue(value, "principal_id");
-                ReportPropertyChanged("principal_id");
-                Onprincipal_idChanged();
-            }
-        }
-        private global::System.Int32 _principal_id;
-        partial void Onprincipal_idChanging(global::System.Int32 value);
-        partial void Onprincipal_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 diagram_id
+        public global::System.Int32 id
         {
             get
             {
-                return _diagram_id;
+                return _id;
             }
             set
             {
-                if (_diagram_id != value)
+                if (_id != value)
                 {
-                    Ondiagram_idChanging(value);
-                    ReportPropertyChanging("diagram_id");
-                    _diagram_id = StructuralObject.SetValidValue(value, "diagram_id");
-                    ReportPropertyChanged("diagram_id");
-                    Ondiagram_idChanged();
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
                 }
             }
         }
-        private global::System.Int32 _diagram_id;
-        partial void Ondiagram_idChanging(global::System.Int32 value);
-        partial void Ondiagram_idChanged();
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> version
+        public global::System.String User
         {
             get
             {
-                return _version;
+                return _User;
             }
             set
             {
-                OnversionChanging(value);
-                ReportPropertyChanging("version");
-                _version = StructuralObject.SetValidValue(value, "version");
-                ReportPropertyChanged("version");
-                OnversionChanged();
+                OnUserChanging(value);
+                ReportPropertyChanging("User");
+                _User = StructuralObject.SetValidValue(value, false, "User");
+                ReportPropertyChanged("User");
+                OnUserChanged();
             }
         }
-        private Nullable<global::System.Int32> _version;
-        partial void OnversionChanging(Nullable<global::System.Int32> value);
-        partial void OnversionChanged();
+        private global::System.String _User;
+        partial void OnUserChanging(global::System.String value);
+        partial void OnUserChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] definition
+        public global::System.Int32 Team
         {
             get
             {
-                return StructuralObject.GetValidValue(_definition);
+                return _Team;
             }
             set
             {
-                OndefinitionChanging(value);
-                ReportPropertyChanging("definition");
-                _definition = StructuralObject.SetValidValue(value, true, "definition");
-                ReportPropertyChanged("definition");
-                OndefinitionChanged();
+                OnTeamChanging(value);
+                ReportPropertyChanging("Team");
+                _Team = StructuralObject.SetValidValue(value, "Team");
+                ReportPropertyChanged("Team");
+                OnTeamChanged();
             }
         }
-        private global::System.Byte[] _definition;
-        partial void OndefinitionChanging(global::System.Byte[] value);
-        partial void OndefinitionChanged();
+        private global::System.Int32 _Team;
+        partial void OnTeamChanging(global::System.Int32 value);
+        partial void OnTeamChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MeetingSchedulerModel", "FK_UserTeam_Resource", "Resource")]
+        public Resource Resource
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resource>("MeetingSchedulerModel.FK_UserTeam_Resource", "Resource").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resource>("MeetingSchedulerModel.FK_UserTeam_Resource", "Resource").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Resource> ResourceReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resource>("MeetingSchedulerModel.FK_UserTeam_Resource", "Resource");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Resource>("MeetingSchedulerModel.FK_UserTeam_Resource", "Resource", value);
+                }
+            }
+        }
 
         #endregion
 

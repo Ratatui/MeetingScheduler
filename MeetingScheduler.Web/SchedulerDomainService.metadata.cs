@@ -74,6 +74,7 @@ namespace MeetingScheduler.Web
 
             public string DisplayName { get; set; }
 
+            [Key]
             public int Id { get; set; }
 
             public string Name { get; set; }
@@ -82,6 +83,8 @@ namespace MeetingScheduler.Web
 
             [Include]
             public ResourceType ResourceTypes { get; set; }
+
+            public EntityCollection<UserTeam> UserTeam { get; set; }
         }
     }
 
@@ -188,14 +191,14 @@ namespace MeetingScheduler.Web
         }
     }
 
-    // The MetadataTypeAttribute identifies sysdiagramsMetadata as the class
-    // that carries additional metadata for the sysdiagrams class.
-    [MetadataTypeAttribute(typeof(sysdiagrams.sysdiagramsMetadata))]
-    public partial class sysdiagrams
+    // The MetadataTypeAttribute identifies UserTeamMetadata as the class
+    // that carries additional metadata for the UserTeam class.
+    [MetadataTypeAttribute(typeof(UserTeam.UserTeamMetadata))]
+    public partial class UserTeam
     {
 
         // This class allows you to attach custom attributes to properties
-        // of the sysdiagrams class.
+        // of the UserTeam class.
         //
         // For example, the following marks the Xyz property as a
         // required property and specifies the format for valid values:
@@ -203,23 +206,22 @@ namespace MeetingScheduler.Web
         //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
         //    [StringLength(32)]
         //    public string Xyz { get; set; }
-        internal sealed class sysdiagramsMetadata
+        internal sealed class UserTeamMetadata
         {
 
             // Metadata classes are not meant to be instantiated.
-            private sysdiagramsMetadata()
+            private UserTeamMetadata()
             {
             }
 
-            public byte[] definition { get; set; }
+            [Key]
+            public int id { get; set; }
 
-            public int diagram_id { get; set; }
+            public Resource Resource { get; set; }
 
-            public string name { get; set; }
+            public int Team { get; set; }
 
-            public int principal_id { get; set; }
-
-            public Nullable<int> version { get; set; }
+            public string User { get; set; }
         }
     }
 }

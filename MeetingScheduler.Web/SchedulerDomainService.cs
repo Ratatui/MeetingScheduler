@@ -66,7 +66,7 @@ namespace MeetingScheduler.Web
         // To support paging you will need to add ordering to the 'Resource' query.
         public IQueryable<Resource> GetResource()
         {
-            return this.ObjectContext.Resource;
+            return this.ObjectContext.Resource.Include("ResourceTypes");
         }
 
         public void InsertResource(Resource resource)
@@ -99,13 +99,19 @@ namespace MeetingScheduler.Web
             }
         }
 
+        [Query(IsComposable = false)]
+        public Resource GeResourceByID(int ID)
+        {
+            return this.ObjectContext.Resource.SingleOrDefault(c => c.Id == ID);
+        }
+
         // TODO:
         // Consider constraining the results of your query method.  If you need additional input you can
         // add parameters to this method or create additional query methods with different names.
         // To support paging you will need to add ordering to the 'ResourceTypes' query.
-        public IQueryable<Resource> GetResources()
+        public IQueryable<ResourceType> GetResourceTypes()
         {
-            return this.ObjectContext.Resource.Include("ResourceType");
+            return this.ObjectContext.ResourceTypes;
         }
 
         public void InsertResourceTypes(ResourceType resourceTypes)
@@ -180,40 +186,46 @@ namespace MeetingScheduler.Web
         // TODO:
         // Consider constraining the results of your query method.  If you need additional input you can
         // add parameters to this method or create additional query methods with different names.
-        // To support paging you will need to add ordering to the 'sysdiagrams' query.
-        public IQueryable<sysdiagrams> GetSysdiagrams()
+        // To support paging you will need to add ordering to the 'UserTeam' query.
+        public IQueryable<UserTeam> GetUserTeam()
         {
-            return this.ObjectContext.sysdiagrams;
+            return this.ObjectContext.UserTeam;
         }
 
-        public void InsertSysdiagrams(sysdiagrams sysdiagrams)
+        public void InsertUserTeam(UserTeam userTeam)
         {
-            if ((sysdiagrams.EntityState != EntityState.Detached))
+            if ((userTeam.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(sysdiagrams, EntityState.Added);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(userTeam, EntityState.Added);
             }
             else
             {
-                this.ObjectContext.sysdiagrams.AddObject(sysdiagrams);
+                this.ObjectContext.UserTeam.AddObject(userTeam);
             }
         }
 
-        public void UpdateSysdiagrams(sysdiagrams currentsysdiagrams)
+        public void UpdateUserTeam(UserTeam currentUserTeam)
         {
-            this.ObjectContext.sysdiagrams.AttachAsModified(currentsysdiagrams, this.ChangeSet.GetOriginal(currentsysdiagrams));
+            this.ObjectContext.UserTeam.AttachAsModified(currentUserTeam, this.ChangeSet.GetOriginal(currentUserTeam));
         }
 
-        public void DeleteSysdiagrams(sysdiagrams sysdiagrams)
+        public void DeleteUserTeam(UserTeam userTeam)
         {
-            if ((sysdiagrams.EntityState != EntityState.Detached))
+            if ((userTeam.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(sysdiagrams, EntityState.Deleted);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(userTeam, EntityState.Deleted);
             }
             else
             {
-                this.ObjectContext.sysdiagrams.Attach(sysdiagrams);
-                this.ObjectContext.sysdiagrams.DeleteObject(sysdiagrams);
+                this.ObjectContext.UserTeam.Attach(userTeam);
+                this.ObjectContext.UserTeam.DeleteObject(userTeam);
             }
+        }
+
+        [Query(IsComposable = false)]
+        public UserTeam GetTeamByName(string Name)
+        {
+            return this.ObjectContext.UserTeam.SingleOrDefault(c => c.User == Name);
         }
     }
 }

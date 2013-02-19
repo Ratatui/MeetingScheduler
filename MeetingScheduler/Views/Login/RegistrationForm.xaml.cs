@@ -11,6 +11,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using MeetingScheduler.Web;
+    using MeetingScheduler.Views;
 
     /// <summary>
     /// Form that presents the <see cref="RegistrationData"/> and performs the registration process.
@@ -134,6 +135,11 @@
                 {
                     this.registrationData.CurrentOperation = WebContext.Current.Authentication.Login(this.registrationData.ToLoginParameters(), this.LoginOperation_Completed, null);
                     this.parentWindow.AddPendingOperation(this.registrationData.CurrentOperation);
+                    this.registrationData.CurrentOperation.Completed += (sender, args) =>
+                        {
+                            var SelectTeam = new SetTeam();
+                            SelectTeam.Show();
+                        };
                 }
                 else if (operation.Value == CreateUserStatus.DuplicateUserName)
                 {
