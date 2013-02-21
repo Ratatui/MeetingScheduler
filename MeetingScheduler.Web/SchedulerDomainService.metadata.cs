@@ -70,20 +70,30 @@ namespace MeetingScheduler.Web
             {
             }
 
+            [Display(AutoGenerateField = false)]
             public EntityCollection<AppointmentResource> AppointmentResources { get; set; }
 
+            [Display(Order = 2)]
+            public string Color { get; set; }
+
+            [Display(Order = 1)]           
             public string DisplayName { get; set; }
 
             [Key]
+            [Display(AutoGenerateField = false)]
             public int Id { get; set; }
 
+            [Display(Order = 0)]
             public string Name { get; set; }
 
+            [Display(AutoGenerateField = false)]
             public int ResourceTypeId { get; set; }
 
             [Include]
+            [Display(AutoGenerateField = false)]
             public ResourceType ResourceTypes { get; set; }
 
+            [Display(AutoGenerateField = false)]
             public EntityCollection<UserTeam> UserTeam { get; set; }
         }
     }
@@ -112,8 +122,6 @@ namespace MeetingScheduler.Web
             }
 
             public Nullable<bool> AllowMultipleSelection { get; set; }
-
-            public string Color { get; set; }
 
             public string DisplayName { get; set; }
 
@@ -215,12 +223,16 @@ namespace MeetingScheduler.Web
             }
 
             [Key]
+            [Display(AutoGenerateField = false)]
             public int id { get; set; }
 
+            [Display(AutoGenerateField = false)]
             public Resource Resource { get; set; }
 
+            [Display(Order = 1)]
             public int Team { get; set; }
 
+            [Display(Order = 0)]
             public string User { get; set; }
         }
     }

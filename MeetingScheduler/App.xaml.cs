@@ -63,7 +63,7 @@
             busyIndicator.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             busyIndicator.VerticalContentAlignment = VerticalAlignment.Stretch;
 
-            this.RootVisual = busyIndicator;
+            //this.RootVisual = busyIndicator;          
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MeetingSchedulerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MeetingSchedulerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="MeetingSchedulerModelStoreContainer">
           <EntitySet Name="AppointmentResources" EntityType="MeetingSchedulerModel.Store.AppointmentResources" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Resource" EntityType="MeetingSchedulerModel.Store.Resource" store:Type="Tables" Schema="dbo" />
@@ -48,6 +48,7 @@
           <Property Name="ResourceTypeId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Color" Type="nchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="ResourceTypes">
           <Key>
@@ -57,7 +58,6 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
           <Property Name="AllowMultipleSelection" Type="bit" />
-          <Property Name="Color" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="SqlAppointments">
           <Key>
@@ -152,54 +152,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_generate_inserts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="table_name" Type="varchar" Mode="In" />
-          <Parameter Name="target_table" Type="varchar" Mode="In" />
-          <Parameter Name="include_column_list" Type="bit" Mode="In" />
-          <Parameter Name="from" Type="varchar" Mode="In" />
-          <Parameter Name="include_timestamp" Type="bit" Mode="In" />
-          <Parameter Name="debug_mode" Type="bit" Mode="In" />
-          <Parameter Name="owner" Type="varchar" Mode="In" />
-          <Parameter Name="ommit_images" Type="bit" Mode="In" />
-          <Parameter Name="ommit_identity" Type="bit" Mode="In" />
-          <Parameter Name="top" Type="int" Mode="In" />
-          <Parameter Name="cols_to_include" Type="varchar" Mode="In" />
-          <Parameter Name="cols_to_exclude" Type="varchar" Mode="In" />
-          <Parameter Name="disable_constraints" Type="bit" Mode="In" />
-          <Parameter Name="ommit_computed_cols" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MeetingSchedulerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -208,6 +162,7 @@
           <EntitySet Name="Resource" EntityType="MeetingSchedulerModel.Resource" />
           <EntitySet Name="ResourceTypes" EntityType="MeetingSchedulerModel.ResourceTypes" />
           <EntitySet Name="SqlAppointments" EntityType="MeetingSchedulerModel.SqlAppointments" />
+          <EntitySet Name="UserTeam" EntityType="MeetingSchedulerModel.UserTeam" />
           <AssociationSet Name="FK_AppointmentResources_Resources" Association="MeetingSchedulerModel.FK_AppointmentResources_Resources">
             <End Role="Resource" EntitySet="Resource" />
             <End Role="AppointmentResources" EntitySet="AppointmentResources" />
@@ -220,60 +175,13 @@
             <End Role="ResourceTypes" EntitySet="ResourceTypes" />
             <End Role="Resource" EntitySet="Resource" />
           </AssociationSet>
-          <AssociationSet Name="FK_SqlAppointments_SqlAppointments" Association="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments">
-            <End Role="SqlAppointments" EntitySet="SqlAppointments" />
-            <End Role="SqlAppointments1" EntitySet="SqlAppointments" />
-          </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_generate_inserts" ReturnType="Collection(String)">
-            <Parameter Name="table_name" Mode="In" Type="String" />
-            <Parameter Name="target_table" Mode="In" Type="String" />
-            <Parameter Name="include_column_list" Mode="In" Type="Boolean" />
-            <Parameter Name="from" Mode="In" Type="String" />
-            <Parameter Name="include_timestamp" Mode="In" Type="Boolean" />
-            <Parameter Name="debug_mode" Mode="In" Type="Boolean" />
-            <Parameter Name="owner" Mode="In" Type="String" />
-            <Parameter Name="ommit_images" Mode="In" Type="Boolean" />
-            <Parameter Name="ommit_identity" Mode="In" Type="Boolean" />
-            <Parameter Name="top" Mode="In" Type="Int32" />
-            <Parameter Name="cols_to_include" Mode="In" Type="String" />
-            <Parameter Name="cols_to_exclude" Mode="In" Type="String" />
-            <Parameter Name="disable_constraints" Mode="In" Type="Boolean" />
-            <Parameter Name="ommit_computed_cols" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="UserTeam" EntityType="MeetingSchedulerModel.UserTeam" />
           <AssociationSet Name="FK_UserTeam_Resource" Association="MeetingSchedulerModel.FK_UserTeam_Resource">
             <End Role="Resource" EntitySet="Resource" />
             <End Role="UserTeam" EntitySet="UserTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SqlAppointments_SqlAppointments" Association="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments">
+            <End Role="SqlAppointments" EntitySet="SqlAppointments" />
+            <End Role="SqlAppointments1" EntitySet="SqlAppointments" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AppointmentResources">
@@ -294,6 +202,7 @@
           <Property Name="ResourceTypeId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="DisplayName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Color" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="AppointmentResources" Relationship="MeetingSchedulerModel.FK_AppointmentResources_Resources" FromRole="Resource" ToRole="AppointmentResources" />
           <NavigationProperty Name="ResourceTypes" Relationship="MeetingSchedulerModel.FK_Resources_ResourceTypes" FromRole="Resource" ToRole="ResourceTypes" />
           <NavigationProperty Name="UserTeam" Relationship="MeetingSchedulerModel.FK_UserTeam_Resource" FromRole="Resource" ToRole="UserTeam" />
@@ -306,7 +215,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="DisplayName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="AllowMultipleSelection" Type="Boolean" />
-          <Property Name="Color" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Resource" Relationship="MeetingSchedulerModel.FK_Resources_ResourceTypes" FromRole="ResourceTypes" ToRole="Resource" />
         </EntityType>
         <EntityType Name="SqlAppointments">
@@ -332,6 +240,15 @@
           <NavigationProperty Name="AppointmentResources" Relationship="MeetingSchedulerModel.FK_AppointmentResources_SqlAppointments" FromRole="SqlAppointments" ToRole="AppointmentResources" />
           <NavigationProperty Name="SqlAppointments1" Relationship="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments" FromRole="SqlAppointments" ToRole="SqlAppointments1" />
           <NavigationProperty Name="SqlAppointments2" Relationship="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments" FromRole="SqlAppointments1" ToRole="SqlAppointments" />
+        </EntityType>
+        <EntityType Name="UserTeam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Team" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Resource" Relationship="MeetingSchedulerModel.FK_UserTeam_Resource" FromRole="UserTeam" ToRole="Resource" />
         </EntityType>
         <Association Name="FK_AppointmentResources_Resources">
           <End Role="Resource" Type="MeetingSchedulerModel.Resource" Multiplicity="1">
@@ -373,6 +290,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserTeam_Resource">
+          <End Role="Resource" Type="MeetingSchedulerModel.Resource" Multiplicity="1" />
+          <End Role="UserTeam" Type="MeetingSchedulerModel.UserTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTeam">
+              <PropertyRef Name="Team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SqlAppointments_SqlAppointments">
           <End Role="SqlAppointments" Type="MeetingSchedulerModel.SqlAppointments" Multiplicity="0..1" />
           <End Role="SqlAppointments1" Type="MeetingSchedulerModel.SqlAppointments" Multiplicity="*" />
@@ -382,27 +311,6 @@
             </Principal>
             <Dependent Role="SqlAppointments1">
               <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="UserTeam">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="User" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Team" Nullable="false" />
-          <NavigationProperty Name="Resource" Relationship="MeetingSchedulerModel.FK_UserTeam_Resource" FromRole="UserTeam" ToRole="Resource" />
-        </EntityType>
-        <Association Name="FK_UserTeam_Resource">
-          <End Type="MeetingSchedulerModel.Resource" Role="Resource" Multiplicity="1" />
-          <End Type="MeetingSchedulerModel.UserTeam" Role="UserTeam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Resource">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserTeam">
-              <PropertyRef Name="Team" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -428,6 +336,7 @@
                 <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -438,7 +347,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="AllowMultipleSelection" ColumnName="AllowMultipleSelection" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -464,20 +372,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MeetingSchedulerModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MeetingSchedulerModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MeetingSchedulerModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_generate_inserts" FunctionName="MeetingSchedulerModel.Store.sp_generate_inserts" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MeetingSchedulerModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MeetingSchedulerModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MeetingSchedulerModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MeetingSchedulerModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="UserTeam">
             <EntityTypeMapping TypeName="MeetingSchedulerModel.UserTeam">
               <MappingFragment StoreEntitySet="UserTeam">
-                <ScalarProperty Name="Team" ColumnName="Team" />
-                <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

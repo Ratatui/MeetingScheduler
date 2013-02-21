@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c9852e14a8e41819b02608ab9503a4c" Name="Diagram1" ZoomLevel="84">
-        <EntityTypeShape EntityType="MeetingSchedulerModel.AppointmentResources" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.Resource" Width="1.5" PointX="5.125" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.ResourceTypes" Width="1.5" PointX="9.125" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="2fd14998516940cb80ceb264d32d4b2d" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="MeetingSchedulerModel.AppointmentResources" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.Resource" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.ResourceTypes" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MeetingSchedulerModel.SqlAppointments" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingSchedulerModel.UserTeam" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_AppointmentResources_Resources" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_AppointmentResources_SqlAppointments" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_Resources_ResourceTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MeetingSchedulerModel.FK_UserTeam_Resource" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingSchedulerModel.FK_SqlAppointments_SqlAppointments" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MeetingSchedulerModel.UserTeam" Width="1.5" PointX="7.125" PointY="1" />
-        <AssociationConnector Association="MeetingSchedulerModel.FK_UserTeam_Resource" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

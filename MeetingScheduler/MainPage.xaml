@@ -6,57 +6,65 @@
   xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:login="clr-namespace:MeetingScheduler.LoginUI"
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
 
-  <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
-    <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
                               Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
                 <navigation:Frame.UriMapper>
-                  <uriMapper:UriMapper>
-                    <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
-                    <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
-                  </uriMapper:UriMapper>
+                    <uriMapper:UriMapper>
+                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                    </uriMapper:UriMapper>
                 </navigation:Frame.UriMapper>
             </navigation:Frame>
-    </Border>
+        </Border>
 
-    <Grid Style="{StaticResource NavigationOuterGridStyle}">
-      <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+        <Grid Style="{StaticResource NavigationOuterGridStyle}">
+            <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="Black">
 
-        <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
-          <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+                <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
+                    <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
 
-            <ContentControl Style="{StaticResource LogoIcon}"/>
-            <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
+                        <ContentControl Style="{StaticResource LogoIcon}"/>
+                        <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
                                Text="{Binding Strings.ApplicationName, Source={StaticResource ApplicationResources}}"/>
 
-          </StackPanel>
-        </Border>
+                    </StackPanel>
+                </Border>
 
-        <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-          <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-
-            <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+                <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                    <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                        
+                        <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=Strings.HomePageTitle, Source={StaticResource ApplicationResources}}"/>
 
-            <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
+                        <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
 
-            <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/About" TargetName="ContentFrame" Content="{Binding Path=Strings.AboutPageTitle, Source={StaticResource ApplicationResources}}"/>
+                        <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/ResourceView" TargetName="ContentFrame" Content="{Binding Path=Strings.ResourcePageTitle, Source={StaticResource ApplicationResources}}"/>
+                        
+                        <!--<Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
-          </StackPanel>
-        </Border>
+                        <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/UserView" TargetName="ContentFrame" Content="{Binding Path=Strings.UserPageTitle, Source={StaticResource ApplicationResources}}"/>-->
+                        <telerik:RadComboBox x:Name="SelectResource" telerik:StyleManager.Theme="Windows8Touch" HorizontalAlignment="Left" Margin="46,0,0,0" VerticalAlignment="Top" Width="250" EmptyText="Select meeting room">                          
+                        </telerik:RadComboBox>
 
-      </Grid>
+                    </StackPanel>
+                </Border>
 
-      <Border Style="{StaticResource LoginContainerStyle}">
-          <login:LoginStatus/>           
-      </Border>
+            </Grid>
+
+            <Border Style="{StaticResource LoginContainerStyle}" Background="Black">
+                <login:LoginStatus/>
+            </Border>
+        </Grid>
+
     </Grid>
-
-  </Grid>
 
 </UserControl>

@@ -16,6 +16,7 @@
         public MainPage()
         {
             InitializeComponent();
+            Application.Current.RootVisual = this;
         }
 
         /// <summary>

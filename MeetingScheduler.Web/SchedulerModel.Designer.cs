@@ -22,8 +22,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_AppointmentResources_Resources", "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.Resource), "AppointmentResources", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.AppointmentResource), true)]
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_AppointmentResources_SqlAppointments", "SqlAppointments", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.SqlAppointment), "AppointmentResources", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.AppointmentResource), true)]
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_Resources_ResourceTypes", "ResourceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.ResourceType), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.Resource), true)]
-[assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_SqlAppointments_SqlAppointments", "SqlAppointments", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MeetingScheduler.Web.SqlAppointment), "SqlAppointments1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.SqlAppointment), true)]
 [assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_UserTeam_Resource", "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MeetingScheduler.Web.Resource), "UserTeam", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.UserTeam), true)]
+[assembly: EdmRelationshipAttribute("MeetingSchedulerModel", "FK_SqlAppointments_SqlAppointments", "SqlAppointments", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MeetingScheduler.Web.SqlAppointment), "SqlAppointments1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MeetingScheduler.Web.SqlAppointment), true)]
 
 #endregion
 
@@ -197,415 +197,6 @@ namespace MeetingScheduler.Web
         public void AddToUserTeam(UserTeam userTeam)
         {
             base.AddObject("UserTeam", userTeam);
-        }
-
-        #endregion
-
-        #region Function Imports
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        /// <param name="version">No Metadata Documentation available.</param>
-        /// <param name="definition">No Metadata Documentation available.</param>
-        public int sp_alterdiagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, Nullable<global::System.Int32> version, global::System.Byte[] definition)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter versionParameter;
-            if (version.HasValue)
-            {
-                versionParameter = new ObjectParameter("version", version);
-            }
-            else
-            {
-                versionParameter = new ObjectParameter("version", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter definitionParameter;
-            if (definition != null)
-            {
-                definitionParameter = new ObjectParameter("definition", definition);
-            }
-            else
-            {
-                definitionParameter = new ObjectParameter("definition", typeof(global::System.Byte[]));
-            }
-    
-            return base.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        /// <param name="version">No Metadata Documentation available.</param>
-        /// <param name="definition">No Metadata Documentation available.</param>
-        public int sp_creatediagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, Nullable<global::System.Int32> version, global::System.Byte[] definition)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter versionParameter;
-            if (version.HasValue)
-            {
-                versionParameter = new ObjectParameter("version", version);
-            }
-            else
-            {
-                versionParameter = new ObjectParameter("version", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter definitionParameter;
-            if (definition != null)
-            {
-                definitionParameter = new ObjectParameter("definition", definition);
-            }
-            else
-            {
-                definitionParameter = new ObjectParameter("definition", typeof(global::System.Byte[]));
-            }
-    
-            return base.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        public int sp_dropdiagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            return base.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="table_name">No Metadata Documentation available.</param>
-        /// <param name="target_table">No Metadata Documentation available.</param>
-        /// <param name="include_column_list">No Metadata Documentation available.</param>
-        /// <param name="from">No Metadata Documentation available.</param>
-        /// <param name="include_timestamp">No Metadata Documentation available.</param>
-        /// <param name="debug_mode">No Metadata Documentation available.</param>
-        /// <param name="owner">No Metadata Documentation available.</param>
-        /// <param name="ommit_images">No Metadata Documentation available.</param>
-        /// <param name="ommit_identity">No Metadata Documentation available.</param>
-        /// <param name="top">No Metadata Documentation available.</param>
-        /// <param name="cols_to_include">No Metadata Documentation available.</param>
-        /// <param name="cols_to_exclude">No Metadata Documentation available.</param>
-        /// <param name="disable_constraints">No Metadata Documentation available.</param>
-        /// <param name="ommit_computed_cols">No Metadata Documentation available.</param>
-        public ObjectResult<global::System.String> sp_generate_inserts(global::System.String table_name, global::System.String target_table, Nullable<global::System.Boolean> include_column_list, global::System.String from, Nullable<global::System.Boolean> include_timestamp, Nullable<global::System.Boolean> debug_mode, global::System.String owner, Nullable<global::System.Boolean> ommit_images, Nullable<global::System.Boolean> ommit_identity, Nullable<global::System.Int32> top, global::System.String cols_to_include, global::System.String cols_to_exclude, Nullable<global::System.Boolean> disable_constraints, Nullable<global::System.Boolean> ommit_computed_cols)
-        {
-            ObjectParameter table_nameParameter;
-            if (table_name != null)
-            {
-                table_nameParameter = new ObjectParameter("table_name", table_name);
-            }
-            else
-            {
-                table_nameParameter = new ObjectParameter("table_name", typeof(global::System.String));
-            }
-    
-            ObjectParameter target_tableParameter;
-            if (target_table != null)
-            {
-                target_tableParameter = new ObjectParameter("target_table", target_table);
-            }
-            else
-            {
-                target_tableParameter = new ObjectParameter("target_table", typeof(global::System.String));
-            }
-    
-            ObjectParameter include_column_listParameter;
-            if (include_column_list.HasValue)
-            {
-                include_column_listParameter = new ObjectParameter("include_column_list", include_column_list);
-            }
-            else
-            {
-                include_column_listParameter = new ObjectParameter("include_column_list", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter fromParameter;
-            if (from != null)
-            {
-                fromParameter = new ObjectParameter("from", from);
-            }
-            else
-            {
-                fromParameter = new ObjectParameter("from", typeof(global::System.String));
-            }
-    
-            ObjectParameter include_timestampParameter;
-            if (include_timestamp.HasValue)
-            {
-                include_timestampParameter = new ObjectParameter("include_timestamp", include_timestamp);
-            }
-            else
-            {
-                include_timestampParameter = new ObjectParameter("include_timestamp", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter debug_modeParameter;
-            if (debug_mode.HasValue)
-            {
-                debug_modeParameter = new ObjectParameter("debug_mode", debug_mode);
-            }
-            else
-            {
-                debug_modeParameter = new ObjectParameter("debug_mode", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter ownerParameter;
-            if (owner != null)
-            {
-                ownerParameter = new ObjectParameter("owner", owner);
-            }
-            else
-            {
-                ownerParameter = new ObjectParameter("owner", typeof(global::System.String));
-            }
-    
-            ObjectParameter ommit_imagesParameter;
-            if (ommit_images.HasValue)
-            {
-                ommit_imagesParameter = new ObjectParameter("ommit_images", ommit_images);
-            }
-            else
-            {
-                ommit_imagesParameter = new ObjectParameter("ommit_images", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter ommit_identityParameter;
-            if (ommit_identity.HasValue)
-            {
-                ommit_identityParameter = new ObjectParameter("ommit_identity", ommit_identity);
-            }
-            else
-            {
-                ommit_identityParameter = new ObjectParameter("ommit_identity", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter topParameter;
-            if (top.HasValue)
-            {
-                topParameter = new ObjectParameter("top", top);
-            }
-            else
-            {
-                topParameter = new ObjectParameter("top", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter cols_to_includeParameter;
-            if (cols_to_include != null)
-            {
-                cols_to_includeParameter = new ObjectParameter("cols_to_include", cols_to_include);
-            }
-            else
-            {
-                cols_to_includeParameter = new ObjectParameter("cols_to_include", typeof(global::System.String));
-            }
-    
-            ObjectParameter cols_to_excludeParameter;
-            if (cols_to_exclude != null)
-            {
-                cols_to_excludeParameter = new ObjectParameter("cols_to_exclude", cols_to_exclude);
-            }
-            else
-            {
-                cols_to_excludeParameter = new ObjectParameter("cols_to_exclude", typeof(global::System.String));
-            }
-    
-            ObjectParameter disable_constraintsParameter;
-            if (disable_constraints.HasValue)
-            {
-                disable_constraintsParameter = new ObjectParameter("disable_constraints", disable_constraints);
-            }
-            else
-            {
-                disable_constraintsParameter = new ObjectParameter("disable_constraints", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter ommit_computed_colsParameter;
-            if (ommit_computed_cols.HasValue)
-            {
-                ommit_computed_colsParameter = new ObjectParameter("ommit_computed_cols", ommit_computed_cols);
-            }
-            else
-            {
-                ommit_computed_colsParameter = new ObjectParameter("ommit_computed_cols", typeof(global::System.Boolean));
-            }
-    
-            return base.ExecuteFunction<global::System.String>("sp_generate_inserts", table_nameParameter, target_tableParameter, include_column_listParameter, fromParameter, include_timestampParameter, debug_modeParameter, ownerParameter, ommit_imagesParameter, ommit_identityParameter, topParameter, cols_to_includeParameter, cols_to_excludeParameter, disable_constraintsParameter, ommit_computed_colsParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        public int sp_helpdiagramdefinition(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            return base.ExecuteFunction("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        public int sp_helpdiagrams(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            return base.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="diagramname">No Metadata Documentation available.</param>
-        /// <param name="owner_id">No Metadata Documentation available.</param>
-        /// <param name="new_diagramname">No Metadata Documentation available.</param>
-        public int sp_renamediagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, global::System.String new_diagramname)
-        {
-            ObjectParameter diagramnameParameter;
-            if (diagramname != null)
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
-            }
-            else
-            {
-                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
-            }
-    
-            ObjectParameter owner_idParameter;
-            if (owner_id.HasValue)
-            {
-                owner_idParameter = new ObjectParameter("owner_id", owner_id);
-            }
-            else
-            {
-                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter new_diagramnameParameter;
-            if (new_diagramname != null)
-            {
-                new_diagramnameParameter = new ObjectParameter("new_diagramname", new_diagramname);
-            }
-            else
-            {
-                new_diagramnameParameter = new ObjectParameter("new_diagramname", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public int sp_upgraddiagrams()
-        {
-            return base.ExecuteFunction("sp_upgraddiagrams");
         }
 
         #endregion
@@ -931,6 +522,30 @@ namespace MeetingScheduler.Web
         private global::System.String _DisplayName;
         partial void OnDisplayNameChanging(global::System.String value);
         partial void OnDisplayNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Color
+        {
+            get
+            {
+                return _Color;
+            }
+            set
+            {
+                OnColorChanging(value);
+                ReportPropertyChanging("Color");
+                _Color = StructuralObject.SetValidValue(value, true, "Color");
+                ReportPropertyChanged("Color");
+                OnColorChanged();
+            }
+        }
+        private global::System.String _Color;
+        partial void OnColorChanging(global::System.String value);
+        partial void OnColorChanged();
 
         #endregion
 
@@ -1147,30 +762,6 @@ namespace MeetingScheduler.Web
         private Nullable<global::System.Boolean> _AllowMultipleSelection;
         partial void OnAllowMultipleSelectionChanging(Nullable<global::System.Boolean> value);
         partial void OnAllowMultipleSelectionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Color
-        {
-            get
-            {
-                return _Color;
-            }
-            set
-            {
-                OnColorChanging(value);
-                ReportPropertyChanging("Color");
-                _Color = StructuralObject.SetValidValue(value, true, "Color");
-                ReportPropertyChanged("Color");
-                OnColorChanged();
-            }
-        }
-        private global::System.String _Color;
-        partial void OnColorChanging(global::System.String value);
-        partial void OnColorChanged();
 
         #endregion
 

@@ -60,6 +60,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\System.Windows.Controls.Data.DataForm.Toolkit.dll</HintPath>
@@ -68,15 +69,20 @@
     <Reference Include="System.ServiceModel.DomainServices.Client" />
     <Reference Include="System.ServiceModel.DomainServices.Client.Web" />
     <Reference Include="System.ServiceModel.Web.Extensions" />
+    <Reference Include="System.Windows.Controls.DomainServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls" />
     <Reference Include="System.Windows.Controls.Navigation" />
     <Reference Include="Telerik.Windows.Controls, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Data, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.ganttview, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.gridview, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Input, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="telerik.windows.controls.scheduleview, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Scheduling.Core, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Themes.Metro, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Themes.Windows7, Version=2012.3.1129.1050, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -112,6 +118,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\AppointmentHelper.cs" />
+    <Compile Include="Helpers\CategoryHelper.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\ImportanceHelper.cs" />
     <Compile Include="Models\LoginInfo.cs" />
@@ -128,11 +135,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SecurityQuestions.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
+    <Compile Include="Views\ResourceView.xaml.cs">
+      <DependentUpon>ResourceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -153,6 +163,9 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ResourceForm.xaml.cs">
+      <DependentUpon>ResourceForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetTeam.xaml.cs">
       <DependentUpon>SetTeam.xaml</DependentUpon>
     </Compile>
@@ -171,11 +184,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\UserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="Views\About.xaml">
+    <Page Include="Views\ResourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
@@ -202,6 +219,10 @@
     <Page Include="Views\Login\RegistrationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Views\ResourceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SetTeam.xaml">
       <SubType>Designer</SubType>
@@ -242,6 +263,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\MeetingScheduler.Web.SchedulerDomainContext.datasource" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -134,6 +134,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="SchedulerModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SchedulerModel.Designer.cs</LastGenOutput>
@@ -143,9 +146,6 @@
     <Content Include="SchedulerModel.edmx.diagram">
       <DependentUpon>SchedulerModel.edmx</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

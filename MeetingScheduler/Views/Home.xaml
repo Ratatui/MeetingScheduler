@@ -4,21 +4,20 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
   x:Class="MeetingScheduler.Home"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
   Style="{StaticResource PageStyle}">
 
     <Grid x:Name="LayoutRoot">
-
-        <telerik:RadScheduleView x:Name="Scheduler" telerik:StyleManager.Theme="Windows8Touch" telerik:LocalizationManager.ResourceKey="Ruassian">
+        <telerik:RadScheduleView x:Name="Scheduler" telerik:StyleManager.Theme="Windows8Touch">
             <telerik:RadScheduleView.ViewDefinitions>
-                <telerik:DayViewDefinition x:Name="dayViewDefinition" DayStartTime="9:00:00" DayEndTime="18:00:00"/>               
-                <telerik:WeekViewDefinition/>
-                <telerik:MonthViewDefinition/>
-                <telerik:TimelineViewDefinition/>
+                <telerik:DayViewDefinition x:Name="dayViewDefinition" DayStartTime="9:00:00" DayEndTime="18:00:00"/>
+                <telerik:WeekViewDefinition x:Name="weekViewDefinition" DayStartTime="9:00:00" DayEndTime="18:00:00" FirstDayOfWeek="Monday" MajorTickLength="60"/>
+                <telerik:MonthViewDefinition  />
+                <telerik:TimelineViewDefinition />
             </telerik:RadScheduleView.ViewDefinitions>
         </telerik:RadScheduleView>
-
     </Grid>
 
 </navigation:Page>
