@@ -35,10 +35,25 @@
             this.SelectResource = (Application.Current.RootVisual as MainPage).SelectResource;
             this.LoadResources();
 
-            //Scheduler.AppointmentCreated  += Scheduler_AppointmentCreated;
-            Scheduler.AppointmentEdited   += Scheduler_AppointmentEdited;
+            Scheduler.AppointmentEdited   += Scheduler_AppointmentEdited;          
             Scheduler.AppointmentDeleted  += Scheduler_AppointmentDeleted;
-            Scheduler.AppointmentCreating += Scheduler_AppointmentCreating;
+            Scheduler.AppointmentCreating += Scheduler_AppointmentCreating;           
+            Scheduler.AppointmentEditing += (s, a) =>
+            {
+                if (!WebContext.Current.User.IsAuthenticated)
+                {
+                    a.Cancel = true;
+                    MessageBox.Show("PLease login and try again");                    
+                }
+            };
+            Scheduler.AppointmentDeleting += (s, a) =>
+            {
+                if (!WebContext.Current.User.IsAuthenticated)
+                {
+                    a.Cancel = true;
+                    MessageBox.Show("PLease login and try again");                 
+                }
+            };
 
             SelectResource.SelectionChanged += SelectResource_SelectionChanged;
             this.SelectResource.Visibility = System.Windows.Visibility.Visible;
@@ -67,8 +82,6 @@
                                 LoadOperation loadOp = sen as LoadOperation;
                                 var res = loadOp.Entities.ElementAt(0) as MeetingScheduler.Web.Resource;
 
-                               //
-
                                 Telerik.Windows.Controls.Resource resource = new Telerik.Windows.Controls.Resource();
                                 resource.ResourceName = res.Name;
                                 resource.DisplayName = res.DisplayName;
@@ -90,13 +103,15 @@
                     };
             }
             else
+            {
                 e.Cancel = true;
+                MessageBox.Show("PLease login and try again");               
+            }
         }
 
         void Scheduler_AppointmentEdited(object sender, AppointmentEditedEventArgs e)
         {
             var editApp = e.Appointment as Appointment;
-
             SqlAppointment sqlAppointmentToEdit = domainContext.SqlAppointments.Single(a => a.Id.ToString().Equals(editApp.UniqueId));
             sqlAppointmentToEdit.Start = editApp.Start;
             sqlAppointmentToEdit.End = editApp.End;
@@ -108,7 +123,7 @@
             sqlAppointmentToEdit.Importance = editApp.Importance.ToString();            
             sqlAppointmentToEdit.TimeMarker = editApp.TimeMarker.ToString();
 
-            // set the RecurrencePattern and reset the exceptions (delete them) if necessary
+            // set the RecurrencePattern and reset the exceptions
             if (editApp.IsRecurring())
             {
                 sqlAppointmentToEdit.RecurrencePattern = RecurrencePatternHelper.RecurrencePatternToString(editApp.RecurrenceRule.Pattern);
@@ -123,7 +138,7 @@
             }
             else
             {
-                // first delete all cascading exception appointments (if any) 
+                // first delete all cascading exception appointments
                 foreach (var exception in sqlAppointmentToEdit.SqlAppointments1)
                 {
                     this.domainContext.SqlAppointments.Remove(exception);

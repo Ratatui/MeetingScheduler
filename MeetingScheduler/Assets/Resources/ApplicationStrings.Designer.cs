@@ -70,7 +70,7 @@ namespace MeetingScheduler {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application Name.
+        ///   Looks up a localized string similar to Biruza meeting scheduler.
         /// </summary>
         public static string ApplicationName {
             get {
